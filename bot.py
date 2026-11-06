@@ -23,7 +23,7 @@ generation_config = {
   "max_output_tokens": 2048,
 }
 model = genai.GenerativeModel(
-    model_name="gemini-pro",
+    model_name="gemini-1.5pro",
     generation_config=generation_config
 )
 
