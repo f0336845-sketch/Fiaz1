@@ -1,4 +1,3 @@
-import os
 import logging
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filters
@@ -10,9 +9,9 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-# এনভায়রনমেন্ট ভেরিয়েবল থেকে টোকেন নেওয়া
-TELEGRAM_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
-GEMINI_KEY = os.environ.get('GEMINI_API_KEY')
+# সরাসরি টোকেন এবং এপিআই কি এখানে বসানো হলো
+TELEGRAM_TOKEN = '9062966168:AAG-TZh3iONmRi8ygX4eg52teNfiIlChwYE'
+GEMINI_KEY = 'AQ.Ab8RN6JQgqEDj8jJ6HtpjR3ft_DL1t0kThLVA0rlhN_WhdxhIw'
 
 # জেমিনি কনফিগারেশন
 genai.configure(api_key=GEMINI_KEY)
@@ -44,10 +43,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("দুঃখিত, এই মুহূর্তে আমি উত্তর দিতে পারছি না।")
 
 if __name__ == '__main__':
-    if not TELEGRAM_TOKEN or not GEMINI_KEY:
-        logging.error("API Keys not found. Please check Render Environment Variables.")
-        exit(1)
-
     application = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
     
     # টেক্সট মেসেজ হ্যান্ডলার
